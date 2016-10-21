@@ -15,8 +15,7 @@ FlockApiClient flockApiClient = new FlockApiClient(USERTOKEN);
  //To can be either the user or group you want to send the message.User can only send message to the group he is member of.<br/>
  ```
 Message message = new Message(TO,"Hello Flock");
-FlockMessage flockMessage = new FlockMessage(message);
-String messageId = flockApiClient.chatSendMessage(flockMessage);
+String messageId = flockApiClient.chatSendMessage(message);
  ```
  To get all the groups of the user
 ```
@@ -89,8 +88,7 @@ view.setImages(imagesView);
 attachment.setViews(view);
 attachments[0] = attachment;
 message.setAttachments(attachments);
-FlockMessage flockMessage = new FlockMessage(message);
-String messageId = flockApiClient.chatSendMessage(flockMessage);
+String messageId = flockApiClient.chatSendMessage(message);
   ```
 <p>Message showing the widget in the chat window for example Poll</p>
   ```
@@ -132,6 +130,5 @@ attachments[0] = attachment;
 message.setAttachments(attachments);
 message.setAppId("APP ID");
 message.setNotification("THIS IS NOTIFICATION");
-FlockMessage flockMessage = new FlockMessage(message);
-String messageId = flockApiClient.chatSendMessage(flockMessage);
+String messageId = flockApiClient.chatSendMessage(message);
 ```
