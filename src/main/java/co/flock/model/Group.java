@@ -1,4 +1,4 @@
-package co.flock.www.model;
+package co.flock.model;
 
 /**
  * Created by devesh.k on 04/10/16.

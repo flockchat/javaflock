@@ -1,6 +1,6 @@
-package co.flock.www.model.message;
+package co.flock.model.message;
 
-import co.flock.www.model.message.attachments.Attachment;
+import co.flock.model.message.attachments.Attachment;
 
 /**
  * Created by devesh.k on 08/07/16.

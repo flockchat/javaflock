@@ -1,4 +1,4 @@
-package co.flock.www.model;
+package co.flock.model;
 
 public class User {
     private String id;

@@ -1,4 +1,4 @@
-package co.flock.www.model.event;
+package co.flock.model.event;
 
 /**
  * This event modal is sent to the app service by Flock to request the app to unfurl a list of URLs.

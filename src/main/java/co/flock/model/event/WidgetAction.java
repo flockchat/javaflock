@@ -1,4 +1,4 @@
-package co.flock.www.model.event;
+package co.flock.model.event;
 
 /**
  * This event modal is generated when your app's widget calls any of the following flock.js methods:

@@ -1,4 +1,4 @@
-package co.flock.www.model.event;
+package co.flock.model.event;
 
 /**
  *  This modal is base modal available for all the events modal

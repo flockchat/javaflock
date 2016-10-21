@@ -1,4 +1,4 @@
-package co.flock.www.model.event;
+package co.flock.model.event;
 
 /**
  * Created by devesh.k on 14/07/16.

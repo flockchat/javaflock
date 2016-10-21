@@ -1,4 +1,4 @@
-package co.flock.www.model.message;
+package co.flock.model.message;
 
 /**
  * Created by devesh.k on 29/07/16.

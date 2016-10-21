@@ -1,7 +1,7 @@
-package co.flock.www.model.message.attachments;
+package co.flock.model.message.attachments;
 
-public class HtmlView {
-    private String  inline;
+public class WidgetView {
+    private String src;
     private int width;
     private int height;
 
@@ -21,11 +21,11 @@ public class HtmlView {
         this.height = height;
     }
 
-    public String getInline() {
-        return inline;
+    public String getSrc() {
+        return src;
     }
 
-    public void setInline(String inline) {
-        this.inline = inline;
+    public void setSrc(String src) {
+        this.src = src;
     }
 }

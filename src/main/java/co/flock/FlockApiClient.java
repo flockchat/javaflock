@@ -1,8 +1,8 @@
-package co.flock.www;
-import co.flock.www.model.Group;
-import co.flock.www.model.PublicProfile;
-import co.flock.www.model.User;
-import co.flock.www.model.message.Message;
+package co.flock;
+import co.flock.model.Group;
+import co.flock.model.PublicProfile;
+import co.flock.model.User;
+import co.flock.model.message.Message;
 import com.google.gson.Gson;
 import com.ning.http.client.*;
 import java.util.concurrent.CompletableFuture;
@@ -160,12 +160,12 @@ public class FlockApiClient {
 
     private RequestBuilder getRequestBuilder() {
         RequestBuilder requestBuilder;
-        requestBuilder = new RequestBuilder().addHeader("X-Flock-User-Token", userToken);
+        requestBuilder = new RequestBuilder().addQueryParam("token", userToken);
         requestBuilder.addHeader("Content-type","application/json; charset=utf-8");
         return requestBuilder;
     }
 
-    private static <T> CompletableFuture<T> postAsyncRequest(RequestBuilder requestBuilder, final Class<T> t){
+    private static  <T> CompletableFuture<T> postAsyncRequest(RequestBuilder requestBuilder, final Class<T> t){
         final CompletableFuture<T> completableFuture = new CompletableFuture<T>();
         asyncHttpClient.executeRequest(requestBuilder.build(), new AsyncCompletionHandler<Void>() {
             @Override
@@ -174,7 +174,7 @@ public class FlockApiClient {
                     if ("java.lang.String".equals(t.getName())) {
                         completableFuture.complete((T) response.getResponseBody());
                     } else{
-                        completableFuture.complete((T) gson.fromJson(response.getResponseBody(),t.getClass()));
+                        completableFuture.complete(gson.fromJson(response.getResponseBody(),t));
                     }
                 }  else {
                     completableFuture.completeExceptionally(new Exception("Flock api has got error code " + response.getStatusCode() + " and the error message is " + response.getResponseBody()));

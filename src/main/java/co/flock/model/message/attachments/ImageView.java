@@ -1,4 +1,4 @@
-package co.flock.www.model.message.attachments;
+package co.flock.model.message.attachments;
 
 
 public class ImageView {
