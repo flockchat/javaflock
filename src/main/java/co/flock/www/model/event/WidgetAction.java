@@ -1,14 +1,16 @@
-package co.flock.www.modals.flockevents;
+package co.flock.www.model.event;
 
 /**
- * Created by devesh.k on 14/07/16.
+ * This event modal is generated when your app's widget calls any of the following flock.js methods:
+    sendToAppService
+    openWidget
+    openBrowser
  */
-public class FlockMLAction extends FlockEvent {
+public class WidgetAction extends FlockEvent {
     private String userName;
     private String chat;
     private String chatName;
     private String messageUid;
-    private String actionId;
 
     public String getUserName() {
         return userName;
@@ -40,13 +42,5 @@ public class FlockMLAction extends FlockEvent {
 
     public void setMessageUid(String messageUid) {
         this.messageUid = messageUid;
-    }
-
-    public String getActionId() {
-        return actionId;
-    }
-
-    public void setActionId(String actionId) {
-        this.actionId = actionId;
     }
 }

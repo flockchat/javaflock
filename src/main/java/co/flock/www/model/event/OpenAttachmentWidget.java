@@ -1,4 +1,4 @@
-package co.flock.www.modals.flockevents;
+package co.flock.www.model.event;
 
 /**
  * This event modal is generated when a Flock client opens an attachment widget. An attachment widget is either opened inline (on desktop) or in a modal webview (on mobile).

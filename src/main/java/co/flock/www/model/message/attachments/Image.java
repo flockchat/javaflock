@@ -1,9 +1,18 @@
-package co.flock.www.modals.message.attachments;
+package co.flock.www.model.message.attachments;
 
-public class HtmlView {
-    private String  inline;
+
+public class Image {
+    private String src;
     private int width;
     private int height;
+
+    public String getSrc() {
+        return src;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
+    }
 
     public int getWidth() {
         return width;
@@ -19,13 +28,5 @@ public class HtmlView {
 
     public void setHeight(int height) {
         this.height = height;
-    }
-
-    public String getInline() {
-        return inline;
-    }
-
-    public void setInline(String inline) {
-        this.inline = inline;
     }
 }

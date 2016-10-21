@@ -1,8 +1,8 @@
 package co.flock.www;
-import co.flock.www.modals.Group;
-import co.flock.www.modals.PublicProfile;
-import co.flock.www.modals.User;
-import co.flock.www.modals.message.FlockMessage;
+import co.flock.www.model.Group;
+import co.flock.www.model.PublicProfile;
+import co.flock.www.model.User;
+import co.flock.www.model.message.Message;
 import com.google.gson.Gson;
 import com.ning.http.client.*;
 import java.util.concurrent.CompletableFuture;
@@ -30,7 +30,7 @@ public class FlockApiClient {
      * @return The uid of the message which is the unique identifier given to the message being successfully post
      * @throws Exception In case message is not sent successfully in the Flock , exception is thrown with detail error message.
      */
-    public String chatSendMessage(FlockMessage message) throws Exception{
+    public String chatSendMessage(Message message) throws Exception{
         return  chatSendMessageAsync(message).get();
     }
 
@@ -40,7 +40,7 @@ public class FlockApiClient {
      * @return CompletableFuture of the uid of the message which is the unique identifier given to the message being successfully post
      * @throws Exception In case message is not sent successfully in the Flock , exception is thrown with detail error message.
      */
-    public CompletableFuture<String> chatSendMessageAsync(FlockMessage message) throws  Exception {
+    public CompletableFuture<String> chatSendMessageAsync(Message message) throws  Exception {
         RequestBuilder requestBuilder = getRequestBuilder();
         requestBuilder.setUrl(apiEndPoint + "chat.sendMessage");
         requestBuilder.setBody(gson.toJson(message));

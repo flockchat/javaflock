@@ -1,6 +1,6 @@
-package co.flock.www.modals.message;
+package co.flock.www.model.message;
 
-import co.flock.www.modals.message.attachments.Attachment;
+import co.flock.www.model.message.attachments.Attachment;
 
 /**
  * Created by devesh.k on 08/07/16.

@@ -1,4 +1,4 @@
-package co.flock.www.modals.flockevents;
+package co.flock.www.model.event;
 
 /**
  * This event modal is generated when a user enters a slash command. It can be either sent to the app service in case of dispatchEvent, or appended to the URL as a query parameter FlockEvent when opening the URL in a widget or a browser via openWidget or openBrowser, respectively.

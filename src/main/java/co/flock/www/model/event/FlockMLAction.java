@@ -1,21 +1,14 @@
-package co.flock.www.modals.flockevents;
+package co.flock.www.model.event;
 
 /**
- * This event modal is generated when a user presses a button.
+ * Created by devesh.k on 14/07/16.
  */
-public class PressButton extends FlockEvent {
-    private String button;
+public class FlockMLAction extends FlockEvent {
     private String userName;
     private String chat;
     private String chatName;
-
-    public String getButton() {
-        return button;
-    }
-
-    public void setButton(String button) {
-        this.button = button;
-    }
+    private String messageUid;
+    private String actionId;
 
     public String getUserName() {
         return userName;
@@ -39,5 +32,21 @@ public class PressButton extends FlockEvent {
 
     public void setChatName(String chatName) {
         this.chatName = chatName;
+    }
+
+    public String getMessageUid() {
+        return messageUid;
+    }
+
+    public void setMessageUid(String messageUid) {
+        this.messageUid = messageUid;
+    }
+
+    public String getActionId() {
+        return actionId;
+    }
+
+    public void setActionId(String actionId) {
+        this.actionId = actionId;
     }
 }

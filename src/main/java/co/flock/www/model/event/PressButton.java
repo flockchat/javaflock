@@ -1,16 +1,21 @@
-package co.flock.www.modals.flockevents;
+package co.flock.www.model.event;
 
 /**
- * This event modal is generated when your app's widget calls any of the following flock.js methods:
-    sendToAppService
-    openWidget
-    openBrowser
+ * This event modal is generated when a user presses a button.
  */
-public class WidgetAction extends FlockEvent {
+public class PressButton extends FlockEvent {
+    private String button;
     private String userName;
     private String chat;
     private String chatName;
-    private String messageUid;
+
+    public String getButton() {
+        return button;
+    }
+
+    public void setButton(String button) {
+        this.button = button;
+    }
 
     public String getUserName() {
         return userName;
@@ -34,13 +39,5 @@ public class WidgetAction extends FlockEvent {
 
     public void setChatName(String chatName) {
         this.chatName = chatName;
-    }
-
-    public String getMessageUid() {
-        return messageUid;
-    }
-
-    public void setMessageUid(String messageUid) {
-        this.messageUid = messageUid;
     }
 }

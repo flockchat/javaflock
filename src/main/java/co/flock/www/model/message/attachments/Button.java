@@ -1,4 +1,4 @@
-package co.flock.www.modals.message.attachments;
+package co.flock.www.model.message.attachments;
 
 
 public class Button {
