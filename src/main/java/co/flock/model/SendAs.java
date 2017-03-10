@@ -6,35 +6,14 @@ import java.util.Objects;
 import com.google.gson.Gson;
 
 /**
- * Group
+ * SendAs
  */
-public class Group {
-  private String id = null;
-
+public class SendAs {
   private String name = null;
-
-  private Integer memberCount = null;
 
   private String profileImage = null;
 
-  public Group id(String id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public Group name(String name) {
+  public SendAs name(String name) {
     this.name = name;
     return this;
   }
@@ -51,24 +30,7 @@ public class Group {
     this.name = name;
   }
 
-  public Group memberCount(Integer memberCount) {
-    this.memberCount = memberCount;
-    return this;
-  }
-
-   /**
-   * Get memberCount
-   * @return memberCount
-  **/
-  public Integer getMemberCount() {
-    return memberCount;
-  }
-
-  public void setMemberCount(Integer memberCount) {
-    this.memberCount = memberCount;
-  }
-
-  public Group profileImage(String profileImage) {
+  public SendAs profileImage(String profileImage) {
     this.profileImage = profileImage;
     return this;
   }
@@ -94,23 +56,21 @@ public class Group {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Group group = (Group) o;
-    return Objects.equals(this.id, group.id) &&
-        Objects.equals(this.name, group.name) &&
-        Objects.equals(this.memberCount, group.memberCount) &&
-        Objects.equals(this.profileImage, group.profileImage);
+    SendAs sendAs = (SendAs) o;
+    return Objects.equals(this.name, sendAs.name) &&
+        Objects.equals(this.profileImage, sendAs.profileImage);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, memberCount, profileImage);
+    return Objects.hash(name, profileImage);
   }
 
 
   @Override
   public String toString() {
     Gson gson = new Gson();
-    return gson.toJson(this, Group.class);
+    return gson.toJson(this, SendAs.class);
   }
 
   /**

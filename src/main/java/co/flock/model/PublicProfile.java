@@ -1,40 +1,128 @@
+
+
 package co.flock.model;
 
+import java.util.Objects;
+import com.google.gson.Gson;
+
+/**
+ * PublicProfile
+ */
 public class PublicProfile {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private String profileImage;
+  private String id = null;
 
-    public String getId() {
-        return id;
-    }
+  private String firstName = null;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  private String lastName = null;
 
-    public String getFirstName() {
-        return firstName;
-    }
+  private String profileImage = null;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public PublicProfile id(String id) {
+    this.id = id;
+    return this;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+   /**
+   * Get id
+   * @return id
+  **/
+  public String getId() {
+    return id;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getProfileImage() {
-        return profileImage;
-    }
+  public PublicProfile firstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+   /**
+   * Get firstName
+   * @return firstName
+  **/
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public PublicProfile lastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+   /**
+   * Get lastName
+   * @return lastName
+  **/
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public PublicProfile profileImage(String profileImage) {
+    this.profileImage = profileImage;
+    return this;
+  }
+
+   /**
+   * Get profileImage
+   * @return profileImage
+  **/
+  public String getProfileImage() {
+    return profileImage;
+  }
+
+  public void setProfileImage(String profileImage) {
+    this.profileImage = profileImage;
+  }
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PublicProfile publicProfile = (PublicProfile) o;
+    return Objects.equals(this.id, publicProfile.id) &&
+        Objects.equals(this.firstName, publicProfile.firstName) &&
+        Objects.equals(this.lastName, publicProfile.lastName) &&
+        Objects.equals(this.profileImage, publicProfile.profileImage);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstName, lastName, profileImage);
+  }
+
+
+  @Override
+  public String toString() {
+    Gson gson = new Gson();
+    return gson.toJson(this, PublicProfile.class);
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+  
 }
+
