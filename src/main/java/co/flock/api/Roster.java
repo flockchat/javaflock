@@ -19,7 +19,7 @@ public class Roster {
      *  (makes an asynchronous HTTP request)
      * 
      * @param token  (required) 
-     * @return List&lt;PublicProfile&gt;
+     * @return ListenableFuture<PublicProfile[]>
      */
     public static ListenableFuture<PublicProfile[]> listContactsAsync(String token) {
         Map<String, Object> params = new HashMap<>();
@@ -31,7 +31,7 @@ public class Roster {
      *  (makes a synchronous HTTP request)
      * 
      * @param token  (required) 
-     * @return List&lt;PublicProfile&gt;
+     * @return PublicProfile[]
      */
     public static PublicProfile[] listContacts(String token) throws Exception {
         return listContactsAsync(token).get();

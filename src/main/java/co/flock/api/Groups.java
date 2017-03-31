@@ -21,7 +21,7 @@ public class Groups {
      * 
      * @param token  (required) 
      * @param groupId  (required) 
-     * @return Group
+     * @return ListenableFuture<Group>
      */
     public static ListenableFuture<Group> getInfoAsync(String token, String groupId) {
         Map<String, Object> params = new HashMap<>();
@@ -46,7 +46,7 @@ public class Groups {
      * 
      * @param token  (required) 
      * @param groupId  (required) 
-     * @return List&lt;PublicProfile&gt;
+     * @return ListenableFuture<PublicProfile[]>
      */
     public static ListenableFuture<PublicProfile[]> getMembersAsync(String token, String groupId) {
         Map<String, Object> params = new HashMap<>();
@@ -60,7 +60,7 @@ public class Groups {
      * 
      * @param token  (required) 
      * @param groupId  (required) 
-     * @return List&lt;PublicProfile&gt;
+     * @return PublicProfile[]
      */
     public static PublicProfile[] getMembers(String token, String groupId) throws Exception {
         return getMembersAsync(token, groupId).get();
@@ -70,7 +70,7 @@ public class Groups {
      *  (makes an asynchronous HTTP request)
      * 
      * @param token  (required) 
-     * @return List&lt;Group&gt;
+     * @return ListenableFuture<Group[]>
      */
     public static ListenableFuture<Group[]> listAsync(String token) {
         Map<String, Object> params = new HashMap<>();
@@ -82,7 +82,7 @@ public class Groups {
      *  (makes a synchronous HTTP request)
      * 
      * @param token  (required) 
-     * @return List&lt;Group&gt;
+     * @return Group[]
      */
     public static Group[] list(String token) throws Exception {
         return listAsync(token).get();

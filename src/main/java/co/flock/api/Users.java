@@ -20,7 +20,7 @@ public class Users {
      *  (makes an asynchronous HTTP request)
      * 
      * @param token  (required) 
-     * @return User
+     * @return ListenableFuture<User>
      */
     public static ListenableFuture<User> getInfoAsync(String token) {
         Map<String, Object> params = new HashMap<>();
@@ -43,7 +43,7 @@ public class Users {
      * 
      * @param token  (required) 
      * @param userId  (required) 
-     * @return PublicProfile
+     * @return ListenableFuture<PublicProfile>
      */
     public static ListenableFuture<PublicProfile> getPublicProfileAsync(String token, String userId) {
         Map<String, Object> params = new HashMap<>();

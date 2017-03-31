@@ -25,7 +25,7 @@ public class Chat {
      * @param token  (required) 
      * @param chat  (required) 
      * @param uids  (required) 
-     * @return List&lt;Message&gt;
+     * @return ListenableFuture<Message[]>
      */
     public static ListenableFuture<Message[]> fetchMessagesAsync(String token, String chat, List<String> uids) {
         Map<String, Object> params = new HashMap<>();
@@ -41,7 +41,7 @@ public class Chat {
      * @param token  (required) 
      * @param chat  (required) 
      * @param uids  (required) 
-     * @return List&lt;Message&gt;
+     * @return Message[]
      */
     public static Message[] fetchMessages(String token, String chat, List<String> uids) throws Exception {
         return fetchMessagesAsync(token, chat, uids).get();
@@ -54,7 +54,7 @@ public class Chat {
      * @param to  (required) 
      * @param text  (required) 
      * @param sendMessageOptionalParams (optional)
-     * @return UidResponse
+     * @return ListenableFuture<UidResponse>
      */
     public static ListenableFuture<UidResponse> sendMessageAsync(String token, String to, String text, SendMessageOptionalParams sendMessageOptionalParams) {
         if(sendMessageOptionalParams == null) {
