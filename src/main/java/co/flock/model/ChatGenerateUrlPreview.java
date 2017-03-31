@@ -89,8 +89,15 @@ public class ChatGenerateUrlPreview extends Event {
   }
 
 
+  /**
+   * Converts the object to json string
+   */
   @Override
   public String toString() {
+    return toJsonString();
+  }
+
+  public String toJsonString() {
     Gson gson = new Gson();
     return gson.toJson(this, ChatGenerateUrlPreview.class);
   }
