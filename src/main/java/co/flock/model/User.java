@@ -1,76 +1,215 @@
+
+
 package co.flock.model;
 
+import java.util.Objects;
+import com.google.gson.Gson;
+
+/**
+ * User
+ */
 public class User {
-    private String id;
-    private int teamId;
-    private String email;
-    private String firstName;
-    private String lastName;
-    private String role;
-    private String timezone;
-    private String profileImage;
+  private String id = null;
 
-    public String getId() {
-        return id;
-    }
+  private String teamId = null;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  private String email = null;
 
-    public int getTeamId() {
-        return teamId;
-    }
+  private String firstName = null;
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
-    }
+  private String lastName = null;
 
-    public String getEmail() {
-        return email;
-    }
+  private String role = null;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  private String timezone = null;
 
-    public String getFirstName() {
-        return firstName;
-    }
+  private String profileImage = null;
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public User id(String id) {
+    this.id = id;
+    return this;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+   /**
+   * Get id
+   * @return id
+  **/
+  public String getId() {
+    return id;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getRole() {
-        return role;
-    }
+  public User teamId(String teamId) {
+    this.teamId = teamId;
+    return this;
+  }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+   /**
+   * Get teamId
+   * @return teamId
+  **/
+  public String getTeamId() {
+    return teamId;
+  }
 
-    public String getTimezone() {
-        return timezone;
-    }
+  public void setTeamId(String teamId) {
+    this.teamId = teamId;
+  }
 
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
-    }
+  public User email(String email) {
+    this.email = email;
+    return this;
+  }
 
-    public String getProfileImage() {
-        return profileImage;
-    }
+   /**
+   * Get email
+   * @return email
+  **/
+  public String getEmail() {
+    return email;
+  }
 
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public User firstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+   /**
+   * Get firstName
+   * @return firstName
+  **/
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public User lastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+   /**
+   * Get lastName
+   * @return lastName
+  **/
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public User role(String role) {
+    this.role = role;
+    return this;
+  }
+
+   /**
+   * Get role
+   * @return role
+  **/
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public User timezone(String timezone) {
+    this.timezone = timezone;
+    return this;
+  }
+
+   /**
+   * Get timezone
+   * @return timezone
+  **/
+  public String getTimezone() {
+    return timezone;
+  }
+
+  public void setTimezone(String timezone) {
+    this.timezone = timezone;
+  }
+
+  public User profileImage(String profileImage) {
+    this.profileImage = profileImage;
+    return this;
+  }
+
+   /**
+   * Get profileImage
+   * @return profileImage
+  **/
+  public String getProfileImage() {
+    return profileImage;
+  }
+
+  public void setProfileImage(String profileImage) {
+    this.profileImage = profileImage;
+  }
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    User user = (User) o;
+    return Objects.equals(this.id, user.id) &&
+        Objects.equals(this.teamId, user.teamId) &&
+        Objects.equals(this.email, user.email) &&
+        Objects.equals(this.firstName, user.firstName) &&
+        Objects.equals(this.lastName, user.lastName) &&
+        Objects.equals(this.role, user.role) &&
+        Objects.equals(this.timezone, user.timezone) &&
+        Objects.equals(this.profileImage, user.profileImage);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, teamId, email, firstName, lastName, role, timezone, profileImage);
+  }
+
+
+  /**
+   * Converts the object to json string
+   */
+  @Override
+  public String toString() {
+    return toJsonString();
+  }
+
+  public String toJsonString() {
+    Gson gson = new Gson();
+    return gson.toJson(this, User.class);
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+  
 }
+

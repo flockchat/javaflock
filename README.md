@@ -1,134 +1,158 @@
-# flockapiSDK
-Flock Api SDK is wrapper over the apis written in Java.
+# javaflock
+javaflock is a java client for [FlockOS](https://docs.flock.co/).
 
-<p>Download the JAR directly from  	
-https://s3.amazonaws.com/flock-apps-public/flockapiSDKJava/co.flock.www-1.0-SNAPSHOT.jar </p>
+## Install
+Download the JAR from [here](https://s3.amazonaws.com/flock-apps-public/flockapiSDKJava/co.flock.www-1.0-SNAPSHOT.jar)
 
+## Usage
 
-You need to have the user token from the Flock.To start with you need to initalize the FlockApiClient.
+## Index
+
+  - [Methods](#methods)
+  - [Handling events](#handling-events)
+  - [Verifying event tokens](#verifying-event-token)
+
+## [Methods](https://docs.flock.co/display/flockos/Methods)
+
+#### Send a simple message
+```java
+UidResponse messageId = Chat.sendMessage("token", "<to>", "<message>", null);
 ```
 
-FlockApiClient flockApiClient = new FlockApiClient(USERTOKEN); 
+#### Sending message asynchronously
+```java
+ListenableFuture<UidResponse> future = Chat.sendMessageAsync("token", "<to>", "<message>", null);
 ```
- 
- The simplest message you can send in the flock using Message object
- //To can be either the user or group you want to send the message.User can only send message to the group he is member of.<br/>
- ```
-Message message = new Message(TO,"Hello Flock");
-String messageId = flockApiClient.chatSendMessage(message);
- ```
- To get all the groups of the user
-```
-Group[] groups = flockApiClient.getGroupList();
-```
-To get the user info
-```
-User user = flockApiClient.getUserInfo();
-```
-To get the roaster of the user
-```
-PublicProfile[] members = flockApiClient.getRoasterListContacts();
-```
-In case you want to send the FlockML you can use message property
- ```
-message.setFlockml("FLOCK ML WILL GO HERE"); 
- ```
-For sending the message along with the attachement with inline html
- ```
- Attachment flockAttachment = new Attachment();
-// Need to create a view that will associated with the attachement
-View flockAttachementView = new View();
-//View can have html , image , widget and FlockML
-HtmlView flockHtmlView = new HtmlView();
-flockHtmlView.setHeight(height);
-flockHtmlView.setInline("Any valid html can go <b>here</b>.");
-flockAttachementView.setHtml(flockHtmlView);
- ```
- <p>Image View as attachment</p>
- 
- ```
-Image iconImage = new Image();
-iconImage.setHeight(50);
-iconImage.setWidth(50);
-iconImage.setSrc("IMAGE URL");
-ImageView flockImageView = new ImageView();
-flockImageView.setOriginal(iconImage);
-flockAttachementView.setImage(flockImageView);
-```
-<p>We can send very rich Flock Message like ToDo which has the inline message and custom button open the side bar</p>
-```
-Message message = new Message(to,text);
-HtmlView htmlView = new HtmlView();
-htmlView.setInline(previewMessage)
-htmlView.setHeight(frameHeight);
-        
-Image iconImage = new Image();
-iconImage.setHeight(50);
-iconImage.setWidth(50);
-iconImage.setSrc("IMAGE URL");
-ImageView imagesView = new ImageView(iconImage);
-//Action we want to attach to the attachment button in this case open the sidebar on the desktop and modal in mobile
-Action viewAction = new Action();
-viewAction.addOpenWidget("ANY VALID URL","sidebar","modal");
-//View Button
-Button[] buttons = new Button[1];
-Button viewButton = new Button();
-viewButton.setAction(viewAction);
-viewButton.setName("View");
-buttons[0] = viewButton;
 
-Attachment[] attachments = new Attachment[1];
-Attachment attachment = new Attachment();
-attachment.setTitle(title);
-attachment.setButtons(buttons);
-attachment.setAppId("APPID OF YOUR APP");
-View view = new View();
-view.setHtml(htmlView);
-view.setImages(imagesView);
-attachment.setViews(view);
-attachments[0] = attachment;
-message.setAttachments(attachments);
-String messageId = flockApiClient.chatSendMessage(message);
-  ```
-<p>Message showing the widget in the chat window for example Poll</p>
-  ```
-Message message = new Message(to,text);
-WidgetView widgetView = new WidgetView();
-widgetView.setSrc("ANY URL OPEN AS WIDGET");
-widgetView.setHeight("WIDGET HEIGHT");
+#### Send a message using a custom name and profile image
+```java
+SendAs sendAs = new SendAs().name("HAL-9000").profileImage("https://pbs.twimg.com/profile_images/1788506913/HAL-MC2_400x400.png");
+Chat.sendMessage("token", "<to>", "<message>", new SendMessageOptionalParams().sendAs(sendAs));
+```
 
-Action viewAction = new Action();
-viewAction.addOpenWidget(sourceURL,"modal","modal");
-//View Button
-Button[] buttons = new Button[1];
-Button viewButton = new Button();
-viewButton.setAction(viewAction);
-viewButton.setName("View");
-buttons[0] = viewButton;
-//Download button 
-Download downloadResult = new Download();
-downloadResult.setSrc("DOWN LOAD URL");
-downloadResult.setFilename("File Name");
-downloadResult.setMime("MIME TYPE");
+#### Send a widget view
+```java
+WidgetView widget = new WidgetView().src("http://example.com").height(250);
+Views views = new Views().widget(widget);
+Attachment attachment = new Attachment().title("Test widget").description("<description>").views(views);
+// NOTE: attachments is a list of attachments
+Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
 
-Attachment[] attachments = new Attachment[1];
-Attachment attachment = new Attachment();
-attachment.setTitle(title);
-attachment.setButtons(buttons);
-attachment.setDownloads(new Download[]{downloadResult});
+#### Send a HTML view
+```java
+HtmlView htmlView = new HtmlView().inline("A valid <b>html</b> here").height(50);
+Views views = new Views().html(htmlView);
+Attachment attachment = new Attachment().title("Test html").description("<description>").views(views);
+Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
 
-View view = new View();
-view.setWidget(widgetView);
-view.setImages(imageView);
+#### Send a FlockML view
+```java
+Views views = new Views().flockml("<flockml>FlockML is <b>AWESOME</b></flockml>");
+Attachment attachment = new Attachment().title("Test flockml").description("<description>").views(views);
+Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
+
+#### Send a Image view
+```java
+Image image = new Image().src("http://library.acropolis.org/wp-content/uploads/2014/11/One_ring.png").width(400).height(400);
+ImageView imageView = new ImageView().original(image).filename("onering.png");
+Views views = new Views().image(imageView)
+Attachment attachment = new Attachment().title("Test imageview").description("<description>").views(views);
+Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
+
+#### Send download files
+```java
+AttachmentDownload attachmentDownload = new AttachmentDownload().src("http://wallpapercave.com/wp/H630T6R.jpg");
+Views views = new Views().flockml("<flockml>Download the <i>matrix</i></flockml>")
+// NOTE: downloads is always a list
+Attachment attachment = new Attachment().title("Test file").downloads(Collections.singletonList(attachmentDownload)).views(views);
+Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
+
+#### Button with openwidget, open url & send to app service
+```java
+AttachmentButton b1 = new AttachmentButton().name("Harry Potter").id("harry").action(new ActionConfig().type("openWidget").url("https://goo.gl/aygRGf").desktopType("sidebar"));
+AttachmentButton b2 = new AttachmentButton().name("Ron Weasley").id("ron").action(new ActionConfig().type("openBrowser").url("https://goo.gl/gDpMVn").sendContext(true));
+AttachmentButton b3 = new AttachmentButton().name("Hermione Granger").id("hermione").action(new ActionConfig().type("sendEvent"));
+Attachment attachment = new Attachment().title("Test buttons").buttons(Arrays.asList(b1,b2,b3));
+Chat.sendMessage("<token>", "<to>", "Who is your favourite Harry Potter character?", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
+
+#### Now, just for fun, let us change colours
+```java
+Attachment attachment = new Attachment().title("Test colour").color("#FF0000").description("It is red!");
+Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams().attachments(Collections.singletonList(attachment)));
+```
+
+#### Fetching messages
+```java
+Message[] messages = Chat.fetchMessages("<token>", "<chat>", uids);
+```
+
+### Group APIs
+
+#### Get group info
+```java
+Group group = Groups.getInfo("<token>", groupId);
+```
+
+#### Get group members
+```java
+PublicProfile[] members = Groups.getMembers("<token>", groupId);
+```
+
+#### Get groups list of which user is member of 
+```java
+Group[] groupList = Groups.list("<token>");
+```
+
+### User APIs
+
+#### Get user info
+```java
+User userInfo = Users.getInfo("<token>");
+```
+
+#### Get user's public profile
+```java
+User userInfo = Users.getPublicProfile("<token>", userId);
+```
+
+### Contact APIs
+#### Get all contacts
+```java
+PublicProfile[] contacts = Roster.listContacts("<token>");
+```
 
 
-attachment.setViews(view);
-attachment.setAppId("APP ID");
-attachments[0] = attachment;
+## Handling [events](https://docs.flock.co/display/flockos/Events)
+Create instance of `EventHandlerClient`
+```java
+EventHandlerClient client = new EventHandlerClient("<appID>", "<appSecret>");
+```
+Attach `eventListeners` with the client (these will be fired when an event occurs) 
+```java
+client.setAppInstallListener(event -> {
+	// handle app install event here
+});
+client.setClientSlashCommandListener(event -> {
+    // handle slash command event here
+    ...
+    // return the response for the event
+    return new ToastMessage().text("<toast message to be shown>");
+});
+```
+Attach `eventHandlerClient` with your web framework by calling `client.handleRequest` when event request is received
+```java
+HttpServletResponse response = client.handleRequest(request, response);
+```
 
 
-message.setAttachments(attachments);
-message.setAppId("APP ID");
-message.setNotification("THIS IS NOTIFICATION");
-String messageId = flockApiClient.chatSendMessage(message);
+## Verifying [event token](http://docs.flock.co/display/flockos/Event+Tokens)
+```java
+TokenVerifier tokenVerifier = new TokenVerifier("<appId>", "<appSecret>");
+boolean isTokenVerified = tokenVerifier.verifyToken("<eventToken>", "<userId>");
 ```
