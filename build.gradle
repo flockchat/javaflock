@@ -1,7 +1,7 @@
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 
-group = 'co.flock'
+group = 'com.flock'
 version = '1.0.0'
 
 buildscript {
