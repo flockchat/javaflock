@@ -1,8 +1,42 @@
 # javaflock
 javaflock is a java client for [FlockOS](https://docs.flock.co/).
 
-## Install
-Download the JAR from [here](https://s3.amazonaws.com/flock-apps-public/flockapiSDKJava/co.flock.www-1.0-SNAPSHOT.jar)
+## Installation
+[![](https://jitpack.io/v/com.flock/javaflock.svg)](https://jitpack.io/#com.flock/javaflock)
+### Maven
+Add the JitPack repository to your build file
+```xml
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+Add the dependency
+```xml
+<dependency>
+    <groupId>com.flock</groupId>
+    <artifactId>javaflock</artifactId>
+    <version>v1.0</version>
+</dependency>
+```
+### Gradle
+Add the JitPack repository to your root build.gradle
+```groovy
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+Add the dependency
+```groovy
+dependencies {
+	compile 'com.flock:javaflock:v1.0'
+}
+```
 
 ## Usage
 
