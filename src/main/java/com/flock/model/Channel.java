@@ -6,9 +6,9 @@ import java.util.Objects;
 import com.google.gson.Gson;
 
 /**
- * Group
+ * Channel
  */
-public class Group {
+public class Channel {
   private String id = null;
 
   private String name = null;
@@ -17,7 +17,9 @@ public class Group {
 
   private String profileImage = null;
 
-  public Group id(String id) {
+  private String purpose = null;
+
+  public Channel id(String id) {
     this.id = id;
     return this;
   }
@@ -34,7 +36,7 @@ public class Group {
     this.id = id;
   }
 
-  public Group name(String name) {
+  public Channel name(String name) {
     this.name = name;
     return this;
   }
@@ -51,7 +53,7 @@ public class Group {
     this.name = name;
   }
 
-  public Group memberCount(Integer memberCount) {
+  public Channel memberCount(Integer memberCount) {
     this.memberCount = memberCount;
     return this;
   }
@@ -68,7 +70,7 @@ public class Group {
     this.memberCount = memberCount;
   }
 
-  public Group profileImage(String profileImage) {
+  public Channel profileImage(String profileImage) {
     this.profileImage = profileImage;
     return this;
   }
@@ -85,6 +87,23 @@ public class Group {
     this.profileImage = profileImage;
   }
 
+  public Channel purpose(String purpose) {
+    this.purpose = purpose;
+    return this;
+  }
+
+   /**
+   * Get purpose
+   * @return purpose
+  **/
+  public String getPurpose() {
+    return purpose;
+  }
+
+  public void setPurpose(String purpose) {
+    this.purpose = purpose;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,16 +113,17 @@ public class Group {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Group group = (Group) o;
-    return Objects.equals(this.id, group.id) &&
-        Objects.equals(this.name, group.name) &&
-        Objects.equals(this.memberCount, group.memberCount) &&
-        Objects.equals(this.profileImage, group.profileImage);
+    Channel channel = (Channel) o;
+    return Objects.equals(this.id, channel.id) &&
+        Objects.equals(this.name, channel.name) &&
+        Objects.equals(this.memberCount, channel.memberCount) &&
+        Objects.equals(this.profileImage, channel.profileImage) &&
+        Objects.equals(this.purpose, channel.purpose);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, memberCount, profileImage);
+    return Objects.hash(id, name, memberCount, profileImage, purpose);
   }
 
 
@@ -117,7 +137,7 @@ public class Group {
 
   public String toJsonString() {
     Gson gson = new Gson();
-    return gson.toJson(this, Group.class);
+    return gson.toJson(this, Channel.class);
   }
 
   /**

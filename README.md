@@ -126,21 +126,21 @@ Chat.sendMessage("<token>", "<to>", "<message>", new SendMessageOptionalParams()
 Message[] messages = Chat.fetchMessages("<token>", "<chat>", uids);
 ```
 
-### Group APIs
+### Channel APIs
 
-#### Get group info
+#### Get channel info
 ```java
-Group group = Groups.getInfo("<token>", groupId);
+Channel channel = Channels.getInfo("<token>", channelId);
 ```
 
-#### Get group members
+#### Get channel members
 ```java
-PublicProfile[] members = Groups.getMembers("<token>", groupId);
+PublicProfile[] members = Channels.getMembers("<token>", channelId);
 ```
 
-#### Get groups list of which user is member of 
+#### Get channels list of which user is member of 
 ```java
-Group[] groupList = Groups.list("<token>");
+Channel[] channelList = Channels.list("<token>");
 ```
 
 ### User APIs
