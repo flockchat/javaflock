@@ -18,7 +18,7 @@ Add the dependency
 <dependency>
     <groupId>com.flock</groupId>
     <artifactId>javaflock</artifactId>
-    <version>v1.0</version>
+    <version>v1.1</version>
 </dependency>
 ```
 ### Gradle
@@ -34,7 +34,7 @@ allprojects {
 Add the dependency
 ```groovy
 dependencies {
-	compile 'com.flock:javaflock:v1.0'
+	compile 'com.flock:javaflock:v1.1'
 }
 ```
 
