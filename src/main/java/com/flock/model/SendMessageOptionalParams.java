@@ -9,12 +9,38 @@ import java.util.*;
 
 public class SendMessageOptionalParams {
 
+    private String onBehalfOf = null;
+    private List<String> visibleTo = null;
     private String flockml = null;
     private String notification = null;
     private List<String> mentions = null;
     private SendAs sendAs = null;
     private List<Attachment> attachments = null;
 
+    public SendMessageOptionalParams onBehalfOf(String onBehalfOf) {
+        this.onBehalfOf = onBehalfOf;
+        return this;
+    }
+
+    public String getOnBehalfOf() {
+        return onBehalfOf;
+    }
+
+    public void setOnBehalfOf(String onBehalfOf) {
+        this.onBehalfOf = onBehalfOf;
+    }
+    public SendMessageOptionalParams visibleTo(List<String> visibleTo) {
+        this.visibleTo = visibleTo;
+        return this;
+    }
+
+    public List<String> getVisibleTo() {
+        return visibleTo;
+    }
+
+    public void setVisibleTo(List<String> visibleTo) {
+        this.visibleTo = visibleTo;
+    }
     public SendMessageOptionalParams flockml(String flockml) {
         this.flockml = flockml;
         return this;

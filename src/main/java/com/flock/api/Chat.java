@@ -64,6 +64,8 @@ public class Chat {
         putParam(params, "token", token);
         putParam(params, "to", to);
         putParam(params, "text", text);
+        putParam(params, "onBehalfOf", sendMessageOptionalParams.getOnBehalfOf());
+        putParam(params, "visibleTo", sendMessageOptionalParams.getVisibleTo());
         putParam(params, "flockml", sendMessageOptionalParams.getFlockml());
         putParam(params, "notification", sendMessageOptionalParams.getNotification());
         putParam(params, "mentions", sendMessageOptionalParams.getMentions());
